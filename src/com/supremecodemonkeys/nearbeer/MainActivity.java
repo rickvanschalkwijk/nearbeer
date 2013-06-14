@@ -1,7 +1,6 @@
 package com.supremecodemonkeys.nearbeer;
 
 import android.app.Activity;
-<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
