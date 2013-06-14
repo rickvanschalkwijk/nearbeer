@@ -1,12 +1,16 @@
 package com.supremecodemonkeys.nearbeer;
 
-import android.os.Bundle;
 import android.app.Activity;
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
@@ -17,12 +21,25 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Button getBeerBtn = (Button) findViewById(R.id.beerBtn);
-		getBeerBtn.setOnClickListener(new OnClickListener() {
+
+		Button beerButton = (Button) findViewById(R.id.beerBtn);
+		Button helpButton = (Button) findViewById(R.id.getHelpBtn);
+		
+		beerButton.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				//Intent mapIntent = new Intent(this, MapActivity.class); 
+				// TODO Auto-generated method stub
 				
+			}
+		});
+		
+		helpButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
 			}
 		});
 	}
