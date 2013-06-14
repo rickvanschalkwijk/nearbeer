@@ -12,7 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.MotionEvent;
 
-@SuppressLint("ValidFragment")
+@SuppressLint({ "ValidFragment", "NewApi" })
 public class SplashActivity extends Activity {
 
 	protected int _splashTime = 500;
@@ -20,7 +20,7 @@ public class SplashActivity extends Activity {
 	private static SplashActivity selfReferance = null;
 	final Context context = this;
 	private String locationProvider = LocationManager.GPS_PROVIDER;
-	final SplashActivity SplashActivity = this;
+	//final Class<SplashActivity> SplashActivity = SplashActivity.class;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,8 @@ public class SplashActivity extends Activity {
 		if (!gpsEnabled) {
 			turnGPSOn(locationManager);
 		}else{
-			Intent intent = new Intent(SplashActivity,
-					MainActivity.class);
+			Intent intent = new Intent(SplashActivity.this,
+					MapActivity.class);
 			startActivity(intent);
 			finish();
 		}
