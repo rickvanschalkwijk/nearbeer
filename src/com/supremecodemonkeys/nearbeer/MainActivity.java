@@ -28,7 +28,8 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
+				startActivity(mapIntent);
 				
 			}
 		});

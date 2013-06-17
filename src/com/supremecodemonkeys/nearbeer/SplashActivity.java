@@ -53,7 +53,7 @@ public class SplashActivity extends Activity {
 			turnGPSOn(locationManager);
 		}else{
 			Intent intent = new Intent(SplashActivity.this,
-					MapActivity.class);
+					MainActivity.class);
 			startActivity(intent);
 			finish();
 		}
