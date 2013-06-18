@@ -13,6 +13,8 @@ import com.google.api.client.http.HttpRequestFactory;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.http.json.JsonHttpParser;
+import com.google.api.client.json.jackson.JacksonFactory;
 import com.supremecodemonkeys.models.PlacesList;
 
 public class GooglePlaces {
@@ -61,8 +63,10 @@ public class GooglePlaces {
 			@Override
 			public void initialize(HttpRequest request) throws IOException {
 				GoogleHeaders headers = new GoogleHeaders();
-				
-				
+				headers.setApplicationName("nearbeer");
+				request.setHeaders(headers);
+				JsonHttpParser parser = new JsonHttpParser(new JacksonFactory());
+				request.addParser(parser);
 			}
 		});
 	}
