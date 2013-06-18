@@ -1,6 +1,7 @@
 package com.supremecodemonkeys.models;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 
 import com.google.api.client.util.Key;
 
@@ -12,6 +13,8 @@ public class Place implements Serializable {
 	public String name;
 	@Key
 	public String reference;
+	@Key
+	public String[] types;
 	@Key
 	public String icon;
 	@Key

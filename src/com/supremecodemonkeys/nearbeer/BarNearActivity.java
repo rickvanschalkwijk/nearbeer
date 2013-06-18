@@ -16,9 +16,11 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -34,10 +36,18 @@ public class BarNearActivity extends Activity {
 	PlacesList nearPlaces;
 	ArrayList<HashMap<String, String>> placeListItems = new ArrayList<HashMap<String,String>>();
 	GooglePlaces googlePlaces;
+	public String BeerRatingIcon;
 	public static String KEY_REFERENCE 	= "reference";
 	public static String KEY_NAME		= "name";
  	public static String KEY_VICINITY	= "vicinity";
+	public static String KEY_ICON		= "icon";
 	
+	int[] icons = new int[]{
+			R.drawable.beer_point_five,
+			R.drawable.beer_point_nine,
+			R.drawable.beer_point_three
+	};
+ 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +57,17 @@ public class BarNearActivity extends Activity {
 		lv = (ListView) findViewById(R.id.list);
 		btnShowOnMap = (Button) findViewById(R.id.btn_show_map);
 		new LoadPlaces().execute();
+		
+		btnShowOnMap.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent mapIntent = new Intent(BarNearActivity.this, MapActivity.class);
+				mapIntent.putExtra("user_lat", Double.toString(gps.getLatitude()));
+				mapIntent.putExtra("user_lng", Double.toString(gps.getLongitude()));
+				mapIntent.putExtra("places", nearPlaces);
+				startActivity(mapIntent);
+			}
+		});
 	}
 
 	@Override
@@ -89,15 +110,27 @@ public class BarNearActivity extends Activity {
 					if(status.equals("OK")){
 						if(nearPlaces.results != null){
 							for(Place p : nearPlaces.results){
+								for(int i = 0; i < p.types.length; i++ ){
+									if(p.types[i].equals("bar") || p.types[i].equals("cafe") || p.types[i].equals("liquor_store")){
+										BeerRatingIcon = Integer.toString(R.drawable.beer_point_nine);
+										break;
+									}else if(p.types[i].equals("restaurant")){
+										BeerRatingIcon = Integer.toString(R.drawable.beer_point_five);
+										break;
+									}else{
+										BeerRatingIcon = Integer.toString(R.drawable.beer_point_three);
+									}
+								}
 								HashMap<String, String> map = new HashMap<String, String>();
 								map.put(KEY_REFERENCE, p.reference);
 								map.put(KEY_NAME, p.name);
+								map.put(KEY_ICON, BeerRatingIcon);
 								placeListItems.add(map);
 							}
 							
 							ListAdapter adapter = new SimpleAdapter(BarNearActivity.this, placeListItems, 
-																R.layout.list_item, new String[]{KEY_REFERENCE, KEY_NAME}, 
-																new int[]{R.id.reference, R.id.name});
+																R.layout.list_item, new String[]{KEY_REFERENCE, KEY_NAME, KEY_ICON}, 
+																new int[]{R.id.reference, R.id.name, R.id.icon});
 							lv.setAdapter(adapter);
 						}
 					}else if(status.equals("ZERO_RESULTS")){
