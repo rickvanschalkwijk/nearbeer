@@ -1,21 +1,17 @@
 package com.supremecodemonkeys.nearbeer;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.supremecodemonkeys.core.Gps;
-import com.supremecodemonkeys.core.IGPSActivity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 
-public class MapActivity extends Activity implements IGPSActivity {
+public class MapActivity extends Activity {
 	
 	private GoogleMap mMap;
 	private Gps gps;
@@ -44,7 +40,7 @@ public class MapActivity extends Activity implements IGPSActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		gps.resumeGPS();
+	
 	}
 	
 	@Override
@@ -55,19 +51,19 @@ public class MapActivity extends Activity implements IGPSActivity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		gps.stopGPS();
+		gps.stopUsingGPS();
 	}
 	
 	@Override
 	protected void onRestart(){
 		super.onRestart();
-		gps.resumeGPS();
+
 	}
 	
 	@Override
 	protected void onDestroy(){
 		super.onDestroy();
-		gps.stopGPS();
+		gps.stopUsingGPS();
 	}
 	
 	@Override
@@ -85,15 +81,6 @@ public class MapActivity extends Activity implements IGPSActivity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
-	}
-
-
-	@Override
-	public void locationChanged(double longitude, double latitude) {
-		latlong = new LatLng(latitude, longitude);
-		mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong));
-		mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-	
 	}
 
 }

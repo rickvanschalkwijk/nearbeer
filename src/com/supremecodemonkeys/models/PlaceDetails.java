@@ -2,8 +2,12 @@ package com.supremecodemonkeys.models;
 
 import java.io.Serializable;
 
+import com.google.api.client.util.Key;
+
 public class PlaceDetails  implements Serializable{
+	@Key
 	public String status;
+	@Key
 	public Place result;
 	
 	@Override

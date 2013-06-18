@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
+				Intent mapIntent = new Intent(MainActivity.this, BarNearActivity.class);
 				startActivity(mapIntent);
 				
 			}
