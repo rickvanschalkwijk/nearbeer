@@ -1,7 +1,10 @@
 package com.supremecodemonkeys.nearbeer;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.supremecodemonkeys.core.Gps;
 import com.supremecodemonkeys.core.IGPSActivity;
 
@@ -16,6 +19,7 @@ public class MapActivity extends Activity implements IGPSActivity {
 	
 	private GoogleMap mMap;
 	private Gps gps;
+	public LatLng latlong;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,11 @@ public class MapActivity extends Activity implements IGPSActivity {
 		setContentView(R.layout.activity_map);
 		setupActionBar();
 		mMap = ( (MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+
+		if(mMap != null){
+			mMap.setMyLocationEnabled(true);
+	
+		}
 		gps = new Gps(this);
 	}
 	
@@ -81,8 +90,10 @@ public class MapActivity extends Activity implements IGPSActivity {
 
 	@Override
 	public void locationChanged(double longitude, double latitude) {
-		Log.d( " location: " + longitude + " " + latitude, " ");
-		
+		latlong = new LatLng(latitude, longitude);
+		mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong));
+		mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+	
 	}
 
 }

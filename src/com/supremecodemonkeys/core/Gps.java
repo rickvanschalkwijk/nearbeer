@@ -19,7 +19,10 @@ public class Gps {
 		this.main = main;
 		mlocManager = (LocationManager) ((Activity) this.main).getSystemService(Context.LOCATION_SERVICE);
 		mlocListener = new TheLocationListener();
-		mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
+		Location currentLocation = mlocManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		if(currentLocation == null){
+			mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 0, mlocListener);
+		}
 		this.isRunning = true;
 	}
 	
