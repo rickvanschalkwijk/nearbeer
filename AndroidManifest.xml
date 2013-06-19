@@ -64,6 +64,14 @@
             android:name="com.supremecodemonkeys.nearbeer.BarNearActivity"
             android:label="Here you can find some cold beers!" >
         </activity>
+        <activity
+            android:name="com.supremecodemonkeys.nearbeer.SinglePlaceActivity"
+            android:label="Some details about your beer" >
+        </activity>
+        <activity
+            android:name="com.supremecodemonkeys.nearbeer.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

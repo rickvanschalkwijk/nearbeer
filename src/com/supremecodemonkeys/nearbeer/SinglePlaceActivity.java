@@ -34,7 +34,7 @@ public class SinglePlaceActivity extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(SinglePlaceActivity.this);
-			pDialog.setMessage("Loading profile ...");
+			pDialog.setMessage("Loading place... Please wait");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
 			pDialog.show();
@@ -57,7 +57,6 @@ public class SinglePlaceActivity extends Activity {
 		 * After completing background task Dismiss the progress dialog
 		 * **/
 		protected void onPostExecute(String file_url) {
-			
 			pDialog.dismiss();
 			runOnUiThread(new Runnable() {
 				public void run() {
@@ -65,12 +64,12 @@ public class SinglePlaceActivity extends Activity {
 						String status = placeDetails.status;
 						if(status.equals("OK")){
 							if (placeDetails.result != null) {
-								String name = placeDetails.result.name;
-								String address = placeDetails.result.formatted_address;
-								String phone = placeDetails.result.formatted_phone_number;
-								String latitude = Double.toString(placeDetails.result.geometry.location.lat);
-								String longitude = Double.toString(placeDetails.result.geometry.location.lng);
-								
+								String name 		= placeDetails.result.name;
+								String address 		= placeDetails.result.formatted_address;
+								String phone 		= placeDetails.result.formatted_phone_number;
+								String latitude 	= Double.toString(placeDetails.result.geometry.location.lat);
+								String longitude 	= Double.toString(placeDetails.result.geometry.location.lng);
+								String rating		= Double.toString(placeDetails.result.rating);
 								Log.d("Place ", name + address + phone + latitude + longitude);
 								TextView lbl_name = (TextView) findViewById(R.id.name);
 								TextView lbl_address = (TextView) findViewById(R.id.address);
@@ -111,9 +110,6 @@ public class SinglePlaceActivity extends Activity {
 					}					
 				}
 			});
-
 		}
-
 	}
-
 }

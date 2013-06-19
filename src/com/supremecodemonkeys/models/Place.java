@@ -23,7 +23,10 @@ public class Place implements Serializable {
 	public Geometry geometry;
 	@Key
 	public String formatted_address;
-	
+	@Key
+	public String formatted_phone_number;
+	@Key
+	public double rating;
 	
 	@Override
 	public String toString(){

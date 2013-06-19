@@ -21,10 +21,14 @@ import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class BarNearActivity extends Activity {
 	
@@ -68,6 +72,18 @@ public class BarNearActivity extends Activity {
 				startActivity(mapIntent);
 			}
 		});
+		
+		lv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				TextView c = (TextView) view.findViewById(R.id.reference);
+				String reference = c.getText().toString();
+				Intent detailIntent = new Intent(BarNearActivity.this, SinglePlaceActivity.class);
+				detailIntent.putExtra(KEY_REFERENCE, reference);
+				startActivity(detailIntent);
+			}
+		});
 	}
 
 	@Override
@@ -91,7 +107,7 @@ public class BarNearActivity extends Activity {
 		protected String doInBackground(String... args) {
 			googlePlaces = new GooglePlaces();
 			try {
-				String types = "cafe|restaurant|bar|liquor_store|night_club";
+				String types = "cafe|restaurant|bar|liquor_store|night_club|grocery_or_supermarket";
 				double radius = 1000;
 				nearPlaces = googlePlaces.search(gps.getLatitude(), gps.getLongitude(), radius, types);
 			} catch (Exception e) {
@@ -111,7 +127,8 @@ public class BarNearActivity extends Activity {
 						if(nearPlaces.results != null){
 							for(Place p : nearPlaces.results){
 								for(int i = 0; i < p.types.length; i++ ){
-									if(p.types[i].equals("bar") || p.types[i].equals("cafe") || p.types[i].equals("liquor_store")){
+									if(p.types[i].equals("bar") || p.types[i].equals("cafe") 
+											|| p.types[i].equals("liquor_store") || p.types[i].equals("grocery_or_supermarket")){
 										BeerRatingIcon = Integer.toString(R.drawable.beer_point_nine);
 										break;
 									}else if(p.types[i].equals("restaurant")){
