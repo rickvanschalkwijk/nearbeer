@@ -24,11 +24,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setupActionBar();
-		Button beerButton = (Button) findViewById(R.id.beerBtn);
-		Button helpButton = (Button) findViewById(R.id.getHelpBtn);
+		Button beerButton 		= (Button) findViewById(R.id.beerBtn);
+		Button helpButton 		= (Button) findViewById(R.id.getHelpBtn);
+		Button counterButton 	= (Button) findViewById(R.id.beerCounterBtn);
 		
 		beerButton.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				Intent mapIntent = new Intent(MainActivity.this, BarNearActivity.class);
@@ -36,13 +36,18 @@ public class MainActivity extends Activity {
 				
 			}
 		});
-		
 		helpButton.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
+				Intent aboutIntent = new Intent(MainActivity.this, CounterActivity.class);
+				startActivity(aboutIntent);
+			}
+		});
+		counterButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent counterIntent = new Intent(MainActivity.this, CounterActivity.class);
+				startActivity(counterIntent);
 			}
 		});
 	}

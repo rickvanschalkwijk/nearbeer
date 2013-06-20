@@ -69,9 +69,9 @@ public class MapActivity extends Activity {
 		
 		if(mMap != null){
 			mMap.setMyLocationEnabled(true);
-			mMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(gps.getLatitude(), gps.getLongitude())));
-			mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+			//mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
 			mMap.getUiSettings().setZoomControlsEnabled(true);
+			mMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(gps.getLatitude(), gps.getLongitude())));
 		}
 	}
 	

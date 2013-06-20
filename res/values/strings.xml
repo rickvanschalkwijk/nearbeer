@@ -10,5 +10,7 @@
     <string name="enable_gps">Enable GPS</string>
     <string name="enable_gps_dialog">enable_gps_dialog</string>
     <string name="title_activity_bar_near">BarNearActivity</string>
-	<string name="action_exit">I got my beer! Exit!</string>
+    <string name="action_exit">I got my beer! Exit!</string>
+    <string name="title_activity_counter">Beer Counter</string>
+
 </resources>
