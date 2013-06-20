@@ -12,13 +12,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
         android:layout_marginBottom="5dip"
-        android:textStyle="bold"/>
-    
+        android:textStyle="bold"
+        android:textSize="25dp"
+        style="@style/DropShadow"/>
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        />
     <!--  Name Value -->
     <TextView
         android:id="@+id/name"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:textSize="18dp"
+        />
     
     <!-- Address Label -->
     <TextView
@@ -27,19 +36,43 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dip"
         android:layout_marginBottom="5dip"
-        android:textStyle="bold"/>
-    
+        android:textStyle="bold"
+        android:textSize="25sp"
+        style="@style/DropShadow"/>
+		<View 
+        	android:layout_width="fill_parent"
+        	android:layout_height="1dp"
+        	android:background="#000000"
+        />    
     <!--  Address Value -->
     <TextView
         android:id="@+id/address"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:textSize="18dp"/>
     
     <!-- Phone Number Label -->
+     <!-- Address Label -->
+    <TextView
+        android:text="Other Information:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:layout_marginBottom="5dip"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        style="@style/DropShadow"/>
+		<View 
+        	android:layout_width="fill_parent"
+        	android:layout_height="1dp"
+        	android:background="#000000"
+        />    
     <TextView
         android:id="@+id/phone"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="10dip"/>
     
     
@@ -48,6 +81,7 @@
         android:id="@+id/location"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="15dip"
         android:layout_marginBottom="5dip"/>
     
@@ -56,6 +90,7 @@
         android:id="@+id/rating"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="15dip"
         android:layout_marginBottom="5dip"/>
 
