@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 import com.supremecodemonkeys.core.*;
 import com.supremecodemonkeys.models.*;
@@ -17,7 +20,9 @@ public class SinglePlaceActivity extends Activity {
 	PlaceDetails placeDetails;
 	ProgressDialog pDialog;
 	public static String KEY_REFERENCE = "reference"; // id of the place
-
+	Button showOnMapBtn;
+	String latitude;
+	String longitude;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -27,6 +32,17 @@ public class SinglePlaceActivity extends Activity {
 		Intent i = getIntent();
 		String reference = i.getStringExtra(KEY_REFERENCE);
 		new LoadSinglePlaceDetails().execute(reference);
+		showOnMapBtn = (Button) findViewById(R.id.mapBtn);
+		
+		showOnMapBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent mapIntent = new Intent(SinglePlaceActivity.this, MapActivity.class);
+				mapIntent.putExtra("lat", latitude);
+				mapIntent.putExtra("lng", longitude);
+				startActivity(mapIntent);
+			}
+		});
 	}
 	
 	class LoadSinglePlaceDetails extends AsyncTask<String, String, String> {
@@ -67,8 +83,8 @@ public class SinglePlaceActivity extends Activity {
 								String name 		= placeDetails.result.name;
 								String address 		= placeDetails.result.formatted_address;
 								String phone 		= placeDetails.result.formatted_phone_number;
-								String latitude 	= Double.toString(placeDetails.result.geometry.location.lat);
-								String longitude 	= Double.toString(placeDetails.result.geometry.location.lng);
+								latitude 			= Double.toString(placeDetails.result.geometry.location.lat);
+								longitude 			= Double.toString(placeDetails.result.geometry.location.lng);
 								String rating		= Double.toString(placeDetails.result.rating);
 								Log.d("Place ", name + address + phone + latitude + longitude);
 								TextView lbl_name = (TextView) findViewById(R.id.name);

@@ -17,7 +17,7 @@ public class CounterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_counter);
-		numberOfBeer = 0;
+		numberOfBeer = 1;
 		Button countBtn = (Button) findViewById(R.id.countBtn);
 		counterTxt = (TextView) findViewById(R.id.count);
 		countBtn.setOnClickListener(new View.OnClickListener() {

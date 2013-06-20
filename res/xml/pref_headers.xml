@@ -5,11 +5,5 @@
     <header
         android:fragment="com.supremecodemonkeys.nearbeer.SettingsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
-    <header
-        android:fragment="com.supremecodemonkeys.nearbeer.SettingsActivity$NotificationPreferenceFragment"
-        android:title="@string/pref_header_notifications" />
-    <header
-        android:fragment="com.supremecodemonkeys.nearbeer.SettingsActivity$DataSyncPreferenceFragment"
-        android:title="@string/pref_header_data_sync" />
 
 </preference-headers>

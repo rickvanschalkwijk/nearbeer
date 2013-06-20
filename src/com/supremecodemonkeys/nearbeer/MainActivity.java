@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
 		Button beerButton 		= (Button) findViewById(R.id.beerBtn);
 		Button helpButton 		= (Button) findViewById(R.id.getHelpBtn);
 		Button counterButton 	= (Button) findViewById(R.id.beerCounterBtn);
+		Button settingsButton 	= (Button) findViewById(R.id.settingsBtn);
 		
 		beerButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -48,6 +49,13 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Intent counterIntent = new Intent(MainActivity.this, CounterActivity.class);
 				startActivity(counterIntent);
+			}
+		});
+		settingsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+				startActivity(settingsIntent);
 			}
 		});
 	}

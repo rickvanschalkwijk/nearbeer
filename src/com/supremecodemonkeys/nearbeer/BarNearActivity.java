@@ -11,12 +11,14 @@ import com.supremecodemonkeys.models.PlacesList;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -93,6 +95,13 @@ public class BarNearActivity extends Activity {
 		return true;
 	}
 	
+	public double getRadius(){
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		String dRadius = prefs.getString("example_list", "");
+		
+		return Double.parseDouble(dRadius);
+	}
+	
 	class LoadPlaces extends AsyncTask<String, String, String> {
 		@Override
 		protected void onPreExecute(){
@@ -108,8 +117,7 @@ public class BarNearActivity extends Activity {
 			googlePlaces = new GooglePlaces();
 			try {
 				String types = "cafe|restaurant|bar|liquor_store|night_club|grocery_or_supermarket";
-				double radius = 1000;
-				nearPlaces = googlePlaces.search(gps.getLatitude(), gps.getLongitude(), radius, types);
+				nearPlaces = googlePlaces.search(gps.getLatitude(), gps.getLongitude(), getRadius(), types);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

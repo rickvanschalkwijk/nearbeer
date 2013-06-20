@@ -48,30 +48,42 @@ public class MapActivity extends Activity {
 		setupActionBar();
 		gps = new Gps(this);
 		Intent i = getIntent();
-		//String user_latString
+
 		
 		nearPlaces = (PlacesList) i.getSerializableExtra("places");
 		Log.d("Places"," " + nearPlaces);
 		mMap = ( (MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 		mMap.clear();
-		if(nearPlaces.results != null){
-			for(Place place : nearPlaces.results){
-				latitude = place.geometry.location.lat;
-				longitude = place.geometry.location.lng;
-				LatLng latLng = new LatLng(latitude, longitude);
-				mMap.addMarker(new MarkerOptions().
+		if(nearPlaces != null){
+			if(nearPlaces.results != null){
+				for(Place place : nearPlaces.results){
+					latitude = place.geometry.location.lat;
+					longitude = place.geometry.location.lng;
+					LatLng latLng = new LatLng(latitude, longitude);
+					mMap.addMarker(new MarkerOptions().
 						position(latLng).
 						title(place.name).
 						
-						icon(BitmapDescriptorFactory.fromResource(R.drawable.beer_marker1)));
+						icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher_nearbeer)));
+				}
 			}
 		}
 		
 		if(mMap != null){
 			mMap.setMyLocationEnabled(true);
-			//mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
 			mMap.getUiSettings().setZoomControlsEnabled(true);
-			mMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(gps.getLatitude(), gps.getLongitude())));
+			if(i.getStringExtra("lat") != null){ // User is redirected from SinglePlaceActivity
+				double geolat = Double.parseDouble(i.getStringExtra("lat"));
+				double geolng = Double.parseDouble(i.getStringExtra("lng"));
+				LatLng singlePosition = new LatLng(geolat, geolng);
+				mMap.addMarker(new MarkerOptions().
+						position(singlePosition).
+						icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher_nearbeer)));
+				
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(singlePosition, 14.0f));
+			}else{
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gps.getLatitude(), gps.getLongitude()), 12.0f));
+			}
 		}
 	}
 	
