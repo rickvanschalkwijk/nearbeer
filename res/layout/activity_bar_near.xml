@@ -6,19 +6,19 @@
     
     <!-- Show on Map button -->
     <Button android:id="@+id/btn_show_map"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Show Them On The Map"
+        android:text="Show On Map"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dip"/>
+        android:layout_marginTop="10dip"
+        android:background="@drawable/red_menu_btn"
+        style="@style/ButtonText" />
     
     <!--  List view -->
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_show_map"/>
-    
-    
- 
+        android:layout_below="@id/btn_show_map"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector"/>
 </RelativeLayout>
