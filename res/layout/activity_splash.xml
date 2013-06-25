@@ -6,15 +6,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/activity_bg_gradient"
     tools:context=".SplashActivity" >
 
-    <ProgressBar
+      <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="185dp" />
+        android:layout_marginBottom="75dp" />
+
+      <TextView
+          android:id="@+id/ApplicationSlogan"
+          style="@style/SplashSubText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/ApplicationTitle"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="175dp"
+          android:text="The best application to find beer"
+          android:textAppearance="?android:attr/textAppearanceLarge" />
+
+      <TextView
+          android:id="@+id/ApplicationTitle"
+          style="@style/SplashHeaderText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="98dp"
+          android:text="NearBeer"
+          android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

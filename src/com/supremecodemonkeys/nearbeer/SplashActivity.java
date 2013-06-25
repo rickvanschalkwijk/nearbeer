@@ -2,6 +2,7 @@ package com.supremecodemonkeys.nearbeer;
 
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,6 +11,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.MotionEvent;
 
 @SuppressLint({ "ValidFragment", "NewApi" })
@@ -20,29 +22,25 @@ public class SplashActivity extends Activity {
 	private static SplashActivity selfReferance = null;
 	final Context context = this;
 	private String locationProvider = LocationManager.GPS_PROVIDER;
+	public Handler mHandler =  new Handler();
 	//final Class<SplashActivity> SplashActivity = SplashActivity.class;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
-
-		splashThread = new Thread() {
+		
+		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				isGpsOn();
+				Log.d("Location: ","splashscreen");
+				//isGpsOn();
+				Intent intent = new Intent(SplashActivity.this,
+						MainActivity.class);
+				startActivity(intent);
+				finish();
 			}
-		};
-		splashThread.start();
-	}
-	
-	public void onResume(){
-		super.onResume();
-		isGpsOn();
-	}
-	
-	protected void onStart () {
-		super.onStart();
+		}, 5000);
 	}
 
 	private void isGpsOn(){
