@@ -35,6 +35,6 @@
         android:layout_below="@+id/catchfrase"
         android:gravity="bottom"
         style="@style/ButtonText"
-        android:text="+1" />
+        android:text="          +1" />
 
 </RelativeLayout>

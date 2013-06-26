@@ -1,6 +1,9 @@
 package com.supremecodemonkeys.nearbeer;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.w3c.dom.Document;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -11,17 +14,21 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapController;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 import com.supremecodemonkeys.core.Gps;
+import com.supremecodemonkeys.core.MapDirections;
 import com.supremecodemonkeys.models.Place;
 import com.supremecodemonkeys.models.PlacesList;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +40,6 @@ public class MapActivity extends Activity {
 	private Gps gps;
 	public LatLng latlong;
 	PlacesList nearPlaces;
-	List<Overlay> mapOverlays;
 	GeoPoint geoPoint;
 	MapController mc;
 	double latitude;
@@ -79,6 +85,19 @@ public class MapActivity extends Activity {
 				mMap.addMarker(new MarkerOptions().
 						position(singlePosition).
 						icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher_nearbeer)));
+				
+				//------ display the route ---------// 
+				//MapDirections md = new MapDirections();
+				//Document doc = md.getDocument(new LatLng(gps.getLatitude(), gps.getLongitude()), new LatLng(geolat, geolng), MapDirections.MODE_WALKING);
+				//Log.d("DOCmap","" + doc);
+				//ArrayList<LatLng> directionPoint = md.getDirection(doc);
+				//PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.BLUE);
+
+				//for(int x = 0 ; x < directionPoint.size() ; x++) {          
+					//rectLine.add(directionPoint.get(x));
+			//	}
+
+				//mMap.addPolyline(rectLine);
 				
 				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(singlePosition, 14.0f));
 			}else{

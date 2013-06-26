@@ -3,6 +3,8 @@ package com.supremecodemonkeys.nearbeer;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.ListPreference;
+import android.preference.PreferenceManager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,6 +13,8 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -23,7 +27,7 @@ public class SplashActivity extends Activity {
 	final Context context = this;
 	private String locationProvider = LocationManager.GPS_PROVIDER;
 	public Handler mHandler =  new Handler();
-	//final Class<SplashActivity> SplashActivity = SplashActivity.class;
+	public ListPreference preference;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,12 @@ public class SplashActivity extends Activity {
 			public void run() {
 				Log.d("Location: ","splashscreen");
 				//isGpsOn();
+				
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+				Editor editor = prefs.edit();
+				editor.putLong("exemple_list", 500);
+				editor.commit();
+				
 				Intent intent = new Intent(SplashActivity.this,
 						MainActivity.class);
 				startActivity(intent);

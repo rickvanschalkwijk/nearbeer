@@ -43,6 +43,11 @@ public class Gps extends Service implements LocationListener {
 		this.mContext = context;
 		getLocation();
 	}
+	
+	public Gps(){
+		this.mContext = this;
+		getLocation();
+	}
 
 	public Location getLocation() {
 		try {

@@ -37,13 +37,7 @@ public class MainActivity extends Activity {
 				
 			}
 		});
-		helpButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent aboutIntent = new Intent(MainActivity.this, CounterActivity.class);
-				startActivity(aboutIntent);
-			}
-		});
+		
 		counterButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
