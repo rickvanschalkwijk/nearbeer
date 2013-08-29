@@ -9,7 +9,7 @@ Developed By
 ============
 
 * Rick van Schalkwijk - <rickvschalkwijk@gmail.com>
-* Vincent Karsten - <>
+* Vincent Karsten - <info@vincentkarsten.nl>
 * Onno Valkering - <>
 
 Dependencies
